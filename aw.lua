@@ -86,15 +86,21 @@ function(v)getgenv().targetPlayer.Offset=v end})s4:Button({Name=
 LocalPlayer.Character:FindFirstChild('HumanoidRootPart')if lHRP then getgenv().
 targetPlayer.OriginalPos=lHRP.CFrame getgenv().targetPlayer.Enabled=true notify(
 'Target Aura','Activated')else notify('Error','HumanoidRootPart not found')end
-end})task.spawn(function()while true do local tp=getgenv().targetPlayer if tp.
-Enabled and tp.Name~=''then local target=findTarget(tp.Name)if target and target
-.Character then local tHRP=target.Character:FindFirstChild('HumanoidRootPart')
-local humanoid=target.Character:FindFirstChildWhichIsA('Humanoid')local lHRP=
-LocalPlayer.Character and LocalPlayer.Character:FindFirstChild(
-'HumanoidRootPart')if tHRP and lHRP then if humanoid and humanoid.Health<=0 then
-tp.Enabled=false if tp.OriginalPos then lHRP.CFrame=tp.OriginalPos end notify(
-'Target Aura','Target died. Returning to original position.')continue end lHRP.
-CFrame=getFacingCFrame(tHRP.CFrame,tp.FacingDirection,tp.Offset)pcall(function()
+end})s4:Button({Name='Stop Target Aura',Callback=function()local tp=getgenv().
+targetPlayer tp.Enabled=false local lHRP=LocalPlayer.Character and LocalPlayer.
+Character:FindFirstChild('HumanoidRootPart')if tp.OriginalPos and lHRP then lHRP
+.CFrame=tp.OriginalPos notify('Target Aura',
+'Stopped and returned to original position.')else notify('Target Aura',
+'Stopped.')end end})task.spawn(function()while true do local tp=getgenv().
+targetPlayer if tp.Enabled and tp.Name~=''then local target=findTarget(tp.Name)
+if target and target.Character then local tHRP=target.Character:FindFirstChild(
+'HumanoidRootPart')local humanoid=target.Character:FindFirstChildWhichIsA(
+'Humanoid')local lHRP=LocalPlayer.Character and LocalPlayer.Character:
+FindFirstChild('HumanoidRootPart')if tHRP and lHRP then if humanoid and humanoid
+.Health<=0 then tp.Enabled=false if tp.OriginalPos then lHRP.CFrame=tp.
+OriginalPos end notify('Target Aura',
+'Target died. Returning to original position.')continue end lHRP.CFrame=
+getFacingCFrame(tHRP.CFrame,tp.FacingDirection,tp.Offset)pcall(function()
 ReplicatedStorage:WaitForChild('Remote Events'):WaitForChild('Punch'):
 FireServer(314159265359,target.Character,Vector3.new(0,0,0),1,tHRP)game:
 GetService('ReplicatedStorage')['Remote Events'].ActivateStarted:FireServer(

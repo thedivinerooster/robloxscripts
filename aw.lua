@@ -96,5 +96,6 @@ tp.Enabled=false if tp.OriginalPos then lHRP.CFrame=tp.OriginalPos end notify(
 'Target Aura','Target died. Returning to original position.')continue end lHRP.
 CFrame=getFacingCFrame(tHRP.CFrame,tp.FacingDirection,tp.Offset)pcall(function()
 ReplicatedStorage:WaitForChild('Remote Events'):WaitForChild('Punch'):
-FireServer(314159265359,target.Character,Vector3.new(0,0,0),1,tHRP)end)end end
-task.wait(0.005)else task.wait(0.01)end end end)
+FireServer(314159265359,target.Character,Vector3.new(0,0,0),1,tHRP)game:
+GetService('ReplicatedStorage')['Remote Events'].ActivateStarted:FireServer(
+'Normal')end)end end task.wait(0.005)else task.wait(0.01)end end end)
